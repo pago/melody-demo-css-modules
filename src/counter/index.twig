@@ -1,6 +1,6 @@
-{% import './counter.css' as styles %}
+{% from './counter.css' import header %}
 <div>
-  <h3 class="{{ styles.header }}">Counter: {{ count }}</h3>
+  <h3 class="{{ header }}">Counter: {{ count }}</h3>
   <button ref="{{ incrementButton }}"> + </button>
   <button ref="{{ decrementButton }}"> - </button>
 </div>
