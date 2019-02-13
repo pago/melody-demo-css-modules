@@ -1,4 +1,4 @@
-import { createComponent } from 'melody-component';
+import { createComponent } from '../lib/stream';
 import template from './index.twig';
 
-export default createComponent(template);
+export default createComponent(({ props }) => props, template);

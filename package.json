@@ -7,7 +7,7 @@
   "author": "trivago",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --mode=development",
     "build": "webpack --progress --colors --display-chunks"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "melody-parser": "^1.0.0",
     "melody-plugin-idom": "^1.0.0",
     "melody-traverse": "^1.0.0",
-    "melody-types": "^1.0.0"
+    "melody-types": "^1.0.0",
+    "rxjs": "^6.4.0"
   }
 }

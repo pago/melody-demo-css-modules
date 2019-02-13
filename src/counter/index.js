@@ -1,50 +1,29 @@
-import { createComponent, RECEIVE_PROPS } from 'melody-component';
-import { bindEvents } from 'melody-hoc';
 import template from './index.twig';
 
-const initialState = { count: 0 };
+import {
+    createComponent,
+    useState,
+    useEvents,
+    mergeObject
+} from '../lib/stream';
+import { fromEvent } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-const INC = 'INC';
-const DEC = 'DEC';
+const counter = ({ subscribe }) => {
+    const [count, setCount, getCount] = useState(0);
 
-const increaseCounter = () => ({ type: INC });
-const decreaseCounter = () => ({ type: DEC });
+    const [foo, incremented] = useEvents(el => fromEvent(el, 'click'));
+    subscribe(incremented.pipe(tap(_ => setCount(count => count + 1))));
 
-const stateReducer = (state = initialState, action) => {
-  switch(action.type) {
-    case RECEIVE_PROPS:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case INC:
-      return {
-        ...state,
-        count: state.count + 1
-      };
+    const [decrementButton] = useEvents(el =>
+        fromEvent(el, 'click').pipe(tap(_ => setCount(getCount() - 1)))
+    );
 
-    case DEC:
-      return {
-        ...state,
-        count: state.count - 1
-      };
-  }
-  return state;
-}
+    return mergeObject({
+        count,
+        incrementButton: foo,
+        decrementButton
+    });
+};
 
-const withClickHandlers = bindEvents({
-  incrementButton: {
-    click(event, {dispatch}) {
-      dispatch(increaseCounter());
-    }
-  },
-  decrementButton: {
-    click(event, {dispatch}) {
-      dispatch(decreaseCounter());
-    }
-  }
-});
-
-const component = createComponent(template, stateReducer);
-
-export default withClickHandlers(component);
+export default createComponent(counter, template);
