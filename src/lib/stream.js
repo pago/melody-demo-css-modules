@@ -1,4 +1,5 @@
-import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { BehaviorSubject, Subject, combineLatest, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { enqueueComponent } from 'melody-idom';
 import { toPairs } from 'lodash';
 
@@ -71,7 +72,6 @@ export const mergeIntoObject = (...streams) => {
 export const mergeObject = spec => {
     const pairs = toPairs(spec);
     const observables = pairs.map(([key, value]) => {
-        console.log('key ', key, '; value = ', value);
         if (value.subscribe) {
             return value.pipe(map(val => ({ [key]: val })));
         }

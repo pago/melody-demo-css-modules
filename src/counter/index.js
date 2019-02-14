@@ -1,23 +1,20 @@
 import template from './index.twig';
 
-import {
-    createComponent,
-    useState,
-    useEvents,
-    mergeObject
-} from '../lib/stream';
-import { fromEvent } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { createComponent, useEvents, mergeObject } from '../lib/stream';
+import { fromEvent, merge, of } from 'rxjs';
+import { mapTo, scan } from 'rxjs/operators';
+
+const onEvent = eventName => useEvents(el => fromEvent(el, eventName));
 
 const counter = ({ subscribe }) => {
-    const [count, setCount, getCount] = useState(0);
+    const [foo, incremented] = onEvent('click');
+    const [decrementButton, decremented] = onEvent('click');
 
-    const [foo, incremented] = useEvents(el => fromEvent(el, 'click'));
-    subscribe(incremented.pipe(tap(_ => setCount(count => count + 1))));
-
-    const [decrementButton] = useEvents(el =>
-        fromEvent(el, 'click').pipe(tap(_ => setCount(getCount() - 1)))
-    );
+    const count = merge(
+        of(0),
+        incremented.pipe(mapTo(1)),
+        decremented.pipe(mapTo(-1))
+    ).pipe(scan((acc, next) => acc + next, 0));
 
     return mergeObject({
         count,
