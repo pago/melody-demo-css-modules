@@ -1,5 +1,5 @@
 {% import './home.css' as styles %}
-<div class="{{ styles.home }}">
+<main class="{{ styles.home }}">
     <div class="{{ styles.logo }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="270" height="270" viewBox="0 0 270 270">
             <circle cx="135" cy="135" r="135" fill="#272361"></circle>
@@ -15,4 +15,4 @@
         {{ message }}
     </h1>
     {% mount '../counter' with { count: 5 } %}
-</div>
+</main>

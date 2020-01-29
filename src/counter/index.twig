@@ -1,6 +1,7 @@
-{% from './counter.css' import header %}
+{% from './counter.css' import header, negative, positive %}
 <div>
-  <h3 class="{{ header }}">Counter: {{ count }}</h3>
+  <h3 class="{{ header }} {{count < 0 ? negative : positive}}">Counter: {{ count }}</h3>
   <button ref="{{ incrementButton }}"> + </button>
+  {# <br> #}
   <button ref="{{ decrementButton }}"> - </button>
 </div>

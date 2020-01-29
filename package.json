@@ -1,36 +1,43 @@
 {
-  "name": "melody-template",
-  "version": "0.1.0",
-  "description": "Melody starter template",
-  "main": "src/index.js",
-  "repository": "https://github.com/trivago/melody-template",
-  "author": "trivago",
-  "license": "Apache-2.0",
-  "scripts": {
-    "start": "webpack-dev-server --mode=development",
-    "build": "webpack --progress --colors --display-chunks"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "css-loader": "^2.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0",
-    "webpack-dev-server": "^3.1.14"
-  },
-  "dependencies": {
-    "melody-component": "^1.0.0",
-    "melody-hoc": "^1.0.0",
-    "melody-idom": "^1.0.0",
-    "melody-loader": "^1.0.0",
-    "melody-parser": "^1.0.0",
-    "melody-plugin-idom": "^1.0.0",
-    "melody-traverse": "^1.0.0",
-    "melody-types": "^1.0.0",
-    "rxjs": "^6.4.0"
-  }
+    "name": "melody-template",
+    "version": "0.1.0",
+    "description": "Melody starter template",
+    "main": "src/index.js",
+    "repository": "https://github.com/trivago/melody-template",
+    "author": "trivago",
+    "license": "Apache-2.0",
+    "scripts": {
+        "start": "webpack-dev-server --mode=development",
+        "build": "webpack --progress --colors --display-chunks",
+        "storybook": "start-storybook"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.2.3",
+        "babel-core": "^6.26.0",
+        "babel-loader": "^8.0.5",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "css-loader": "^2.1.0",
+        "style-loader": "^0.23.1",
+        "webpack": "^4.28.3",
+        "webpack-cli": "^3.2.0",
+        "webpack-dev-server": "^3.1.14"
+    },
+    "dependencies": {
+        "@storybook/addon-a11y": "^5.3.9",
+        "@storybook/addon-actions": "^5.3.9",
+        "@storybook/addon-knobs": "^5.3.9",
+        "@storybook/addon-storysource": "^5.3.9",
+        "@storybook/melody": "file:../../melody/packages/melody-storybook",
+        "melody-component": "^1.0.0",
+        "melody-hoc": "^1.0.0",
+        "melody-idom": "^1.0.0",
+        "melody-loader": "^1.0.0",
+        "melody-parser": "^1.0.0",
+        "melody-plugin-idom": "^1.0.0",
+        "melody-storybook": "file:../../melody/packages/melody-storybook",
+        "melody-traverse": "^1.0.0",
+        "melody-types": "^1.0.0",
+        "rxjs": "^6.4.0"
+    }
 }
